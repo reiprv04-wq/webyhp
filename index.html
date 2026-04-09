@@ -5,6 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>株式会社WEBY 新卒採用サイト | THE RED EDGE</title>
+  <meta name="description" content="株式会社WEBYの新卒採用サイトです。専門家プロファイル・法務救済・債務救済などのメディア事業と、士業向けWebコンサルティング事業を展開。2026年卒の採用情報はこちら。">
+  <meta name="keywords" content="株式会社WEBY,WEBY,新卒採用,採用,2026年卒,新卒,就職,銀座,Webコンサルティング,専門家プロファイル">
+  <meta property="og:title" content="株式会社WEBY 新卒採用サイト">
+  <meta property="og:description" content="「今日よりも明日、大きな社会課題を解決する。」株式会社WEBYの2026年卒新卒採用情報。">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -274,9 +279,71 @@
       filter: brightness(0.9);
     }
 
+    .gallery-item {
+      cursor: zoom-in;
+    }
+
     .gallery-item:hover img {
       transform: scale(1.05);
       filter: brightness(1);
+    }
+
+    /* Lightbox */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox-overlay.open {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      display: block;
+      animation: lightboxIn 0.3s cubic-bezier(0.4,0,0.2,1) both;
+    }
+
+    @keyframes lightboxIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-en);
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: rgba(255,255,255,0.5);
+      white-space: nowrap;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 1.8rem;
+      color: rgba(255,255,255,0.6);
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: var(--weby-red);
     }
 
     .g-label {
@@ -1833,14 +1900,14 @@
       <div class="news-bar-label">NEWS</div>
       <div class="news-list">
         <div class="news-item">
-          <span class="news-date">2025.08.01</span>
+          <span class="news-date">2025.09.21</span>
           <span class="news-tag">RECRUIT</span>
-          <span class="news-text">2026年卒 新卒採用 本選考エントリーを開始しました</span>
+          <span class="news-text">2026年卒中途採用 本選考エントリーを開始しました</span>
         </div>
         <div class="news-item">
-          <span class="news-date">2025.02.03</span>
+          <span class="news-date">2024.08.21</span>
           <span class="news-tag">RECRUIT</span>
-          <span class="news-text">2026年卒 サマーインターンのエントリーを開始しました</span>
+          <span class="news-text">2026年卒 新卒採用 本選考エントリーを開始しました</span>
         </div>
         <div class="news-item">
           <span class="news-date">2024.08.21</span>
@@ -1878,7 +1945,7 @@
         <img src="./facility_photos/sub2.png">
         <div class="g-label">
           <span class="g-loc">GINZA / 01</span>
-          <h3 class="g-title">HEADQUARTERS</h3>
+          <h3 class="g-title">LOBBY</h3>
         </div>
       </div>
       <div class="gallery-item">
@@ -1922,7 +1989,6 @@
               <p class="biz-service-desc">法律・お金・住まい・キャリア・健康など多様な分野の専門家とユーザーをつなぐ総合プラットフォーム。実績・口コミでブランディングし、ワンストップで相談できる安心感を提供。</p>
             </div>
             <div class="biz-service">
-              <span class="biz-service-tag">PLATFORM</span>
               <span class="biz-service-name"><i class="fa-solid fa-scale-balanced biz-service-icon"></i>法務救済</span>
               <span class="biz-service-url">houmu931.jp</span>
               <p class="biz-service-desc">企業と弁護士をつなぐプラットフォーム。SEOで露出を強化し、口コミで信頼を可視化。</p>
@@ -2401,6 +2467,13 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
   <!-- Worker Modal -->
   <div id="worker-modal" class="wmodal-overlay" onclick="closeWorker()">
     <div class="wmodal-box" onclick="event.stopPropagation()">
@@ -2414,6 +2487,28 @@
 
     const obs = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); }), { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(e => obs.observe(e));
+
+    // Gallery lightbox
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const title = item.querySelector('.g-title')?.textContent || '';
+        const loc = item.querySelector('.g-loc')?.textContent || '';
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox-caption').textContent = loc + '  —  ' + title;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
 
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q => {
