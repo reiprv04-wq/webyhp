@@ -1735,6 +1735,105 @@
       overflow: hidden;
     }
 
+    /* CEO Message Section */
+    .ceo-section {
+      background: #0a0a0a;
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .ceo-section::before {
+      content: 'CEO';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .ceo-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .ceo-photo-wrap {
+      position: relative;
+    }
+    .ceo-photo-wrap img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .ceo-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: var(--weby-red);
+    }
+    .ceo-content {
+      color: #fff;
+    }
+    .ceo-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--weby-red);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .ceo-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 40px;
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .ceo-body {
+      font-size: 0.9rem;
+      line-height: 2;
+      color: #bbb;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .ceo-body p {
+      margin-bottom: 1.4em;
+    }
+    .ceo-body p:last-child { margin-bottom: 0; }
+    .ceo-name {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid #2a2a2a;
+    }
+    .ceo-name-role {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .ceo-name-jp {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+    }
+    @media (max-width: 768px) {
+      .ceo-inner { grid-template-columns: 1fr; gap: 40px; }
+      .ceo-photo-wrap img { aspect-ratio: 4/3; }
+    }
+
     @media (max-width: 1024px) {
 
       .hero-h1,
@@ -1930,6 +2029,31 @@
           Build Trust.</p>
         <p>その積み上げた<span style="color: var(--weby-red); font-weight: 700;">信頼</span>こそ私たちの大切な資産です。<br><br>期待に沿う信頼と、<span
             style="color: var(--weby-red); font-weight: 700;">期待を超える信頼</span>の追求を。<br>IT企業に必要だと考えています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO Message Section -->
+  <section class="ceo-section">
+    <div class="container reveal">
+      <div class="ceo-inner">
+        <div class="ceo-photo-wrap">
+          <img src="./ceo_photo/IMG_2072.JPG" alt="代表取締役 中野">
+        </div>
+        <div class="ceo-content">
+          <span class="ceo-tag">President's Message</span>
+          <h3 class="ceo-title">より大きな社会課題の解決へ</h3>
+          <div class="ceo-body">
+            <p>2021年、当社は創業10年という節目を迎えました。振り返れば長いようでいて、あっという間の10年間でした。</p>
+            <p>私は大学時代、インターンとしてITの世界に飛び込み、その後ITメガベンチャーでの経験を経てWebyを設立しました。創業当初は「自分の会社」として試行錯誤を重ねてきましたが、約3年前を境に大きな転換点を迎えます。Webyを信頼してくださるお客様が増え、志を持って参画するメンバーが増えたことで、この会社は"皆の会社"へと変わっていきました。</p>
+            <p>その変化は、私たちのあり方そのものを問い直すきっかけになりました。信頼してくださる方々に何をもって応えるべきか——その問いに向き合い続けた末にたどり着いたのが、「より大きな社会課題を解決する」というビジョンです。</p>
+            <p>単なる事業拡大だけを目的とするのではなく、社会にとって意味のある価値を生み出し続ける存在でありたい。そのために、一人ひとりが主体的に考え、行動し、組織としての強さと信頼を積み重ねていきます。</p>
+          </div>
+          <div class="ceo-name">
+            <div class="ceo-name-role">代表取締役 CEO</div>
+            <div class="ceo-name-jp">中野 龍之介</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
